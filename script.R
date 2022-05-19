@@ -358,6 +358,8 @@ result <- optimize.portfolio(portfolio = portfolio, R = R_train, optimize_method
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train, weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -375,6 +377,8 @@ plot(result, risk.col="StdDev", return.col="mean", main="", chart.assets=TRUE, x
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test, weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -401,6 +405,8 @@ result <- optimize.portfolio(portfolio = portfolio, R = R_train[,colnames(df_all
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train[,colnames(df_all_shares)], weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -414,6 +420,8 @@ barplot(result$weights, main="", xlab="")
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test[,colnames(df_all_shares)], weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -442,6 +450,8 @@ result <- optimize.portfolio(portfolio_2, R = R_train, optimize_method = "ROI", 
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train, weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -458,6 +468,8 @@ barplot(result$weights, main="", xlab="")
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test, weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -485,6 +497,8 @@ result <- optimize.portfolio(portfolio = portfolio_2, R = R_train[,colnames(df_a
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train[,colnames(df_all_shares)], weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -497,6 +511,8 @@ barplot(result$weights, main="", xlab="")
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test[,colnames(df_all_shares)], weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -521,6 +537,8 @@ result <- optimize.portfolio(R_train, portfolio_3, optimize_method = "ROI")
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train, weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -533,6 +551,8 @@ charts.PerformanceSummary(day_return)
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test, weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -548,10 +568,12 @@ portfolio_3 <- add.constraint(portfolio_3, type = "full_investment")
 portfolio_3 <- add.objective(portfolio_3, type = "return", name = "mean")
 portfolio_3 <- add.objective(portfolio_3, type = "risk", name = "var", risk_aversion = 20, conc_aversion=0.01)
 
-result <- optimize.portfolio(R_train[,colnames(df_all_shares)df_all_shares], portfolio_3, optimize_method = "ROI")
+result <- optimize.portfolio(R_train[,colnames(df_all_shares)], portfolio_3, optimize_method = "ROI")
 
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train[,colnames(df_all_shares)], weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -565,6 +587,8 @@ charts.PerformanceSummary(day_return)
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test[,colnames(df_all_shares)], weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -588,6 +612,8 @@ result <- optimize.portfolio(portfolio_4, R = R_train, optimize_method = "ROI", 
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train, weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -600,6 +626,8 @@ charts.PerformanceSummary(day_return)
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test, weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -621,6 +649,8 @@ result <- optimize.portfolio(portfolio_4, R = R_train[,colnames(df_all_shares)],
 # Обучающая выборка
 day_return <- Return.portfolio(R = R_train[,colnames(df_all_shares)], weights = result$weights)
 
+sharpe(as.numeric(day_return), r=0)
+
 mean(day_return)
 sum(day_return)
 StdDev(day_return)
@@ -633,6 +663,8 @@ charts.PerformanceSummary(day_return)
 
 # Тестовая выборка
 day_return <- Return.portfolio(R = R_test[,colnames(df_all_shares)], weights = result$weights)
+
+sharpe(as.numeric(day_return), r=0)
 
 mean(day_return)
 sum(day_return)
@@ -872,7 +904,14 @@ for (i in 1:n) {
   day_returns <- asset_retruns_test[i,]
   daily_portf_return <- append(daily_portf_return, sum(weights * day_returns))
 }
+
+sharpe(as.numeric(daily_portf_return), r=0)
+
+mean(daily_portf_return)
 sum(daily_portf_return)
+StdDev(daily_portf_return)
+ES(daily_portf_return, p=.95)
+PerformanceAnalytics::VaR(daily_portf_return, p = 0.95)
 
 # Без криптовалют
 asset_names <- c('GSPC', 'SX5E')
@@ -914,10 +953,115 @@ for (i in 1:n) {
   portf_no_crypto_return <- append(portf_no_crypto_return, sum(weights * day_returns))
 }
 
-sum(portf_no_crypto_return)
+sharpe(as.numeric(portf_no_crypto_return), r=0)
 
-plot(cumsum(daily_portf_return), type='l', , col = "red", xlab = 'day', ylab = 'return')
+mean(portf_no_crypto_return)
+sum(portf_no_crypto_return)
+StdDev(portf_no_crypto_return)
+ES(portf_no_crypto_return, p=.95)
+PerformanceAnalytics::VaR(portf_no_crypto_return, p = 0.95)
+
+# C криптовалютами / без GARCH
+
+asset_names <- c('btc', 'GSPC', 'SX5E')
+asset_retruns <- Returns_with_index[,asset_names]
+
+sample_size <- floor((1 - 1/exp(1)) * nrow(asset_retruns))
+train_indexes <- seq_len(sample_size)
+
+asset_retruns_train <- asset_retruns[train_indexes, ]
+asset_retruns_test <- asset_retruns[-train_indexes, ]
+
+data <- as.timeSeries(asset_retruns_train)
+n <- nrow(asset_retruns_test)
+column_names <- colnames(data)
+
+portfolios_naive <- NULL
+
+for (i in 1:n) {
+  data <- rbind(data, as.timeSeries(asset_retruns_test[i,]))
+  colnames(data) <- column_names
+  
+  spec <- portfolioSpec()
+  setSolver(spec) <- "solveRquadprog"
+  setTargetReturn(spec) = return_target
+  
+  portf <- efficientPortfolio(data, spec);
+  portfolios_naive <- append(portfolios_no_crypto, portf)
+  
+  print(paste('Day:', i))
+}
+
+portf_return_naive <- NULL
+
+for (i in 1:n) {
+  portf <- portfolios_naive[[i]]
+  weights <- getWeights(portf)
+  day_returns <- asset_retruns_test[i,]
+  portf_return_naive <- append(portf_return_naive, sum(weights * day_returns))
+}
+
+# Без криптовалют / без GARCH
+asset_names <- c('GSPC', 'SX5E')
+asset_retruns <- Returns_with_index[,asset_names]
+
+sample_size <- floor((1 - 1/exp(1)) * nrow(asset_retruns))
+train_indexes <- seq_len(sample_size)
+
+asset_retruns_train <- asset_retruns[train_indexes, ]
+asset_retruns_test <- asset_retruns[-train_indexes, ]
+
+data <- as.timeSeries(asset_retruns_train)
+n <- nrow(asset_retruns_test)
+column_names <- colnames(data)
+
+portfolios_naive_no_crypto <- NULL
+
+for (i in 1:n) {
+  data <- rbind(data, as.timeSeries(asset_retruns_test[i,]))
+  colnames(data) <- column_names
+  
+  spec <- portfolioSpec()
+  setSolver(spec) <- "solveRquadprog"
+  setTargetReturn(spec) = return_target
+  
+  portf <- efficientPortfolio(data, spec);
+  portfolios_naive_no_crypto <- append(portfolios_no_crypto, portf)
+  
+  print(paste('Day:', i))
+}
+
+portf_return_naive_no_crypto <- NULL
+
+for (i in 1:n) {
+  portf <- portfolios_naive[[i]]
+  weights <- getWeights(portf)
+  day_returns <- asset_retruns_test[i,]
+  portf_return_naive_no_crypto <- append(portf_return_naive_no_crypto, sum(weights * day_returns))
+}
+
+sharpe(as.numeric(portf_return_naive), r=0)
+
+mean(portf_return_naive)
+sum(portf_return_naive)
+StdDev(portf_return_naive)
+ES(portf_return_naive, p=.95)
+PerformanceAnalytics::VaR(portf_return_naive, p = 0.95)
+
+sharpe(as.numeric(portf_return_naive_no_crypto), r=0)
+
+mean(portf_return_naive_no_crypto)
+sum(portf_return_naive_no_crypto)
+StdDev(portf_return_naive_no_crypto)
+ES(portf_return_naive_no_crypto, p=.95)
+PerformanceAnalytics::VaR(portf_return_naive_no_crypto, p = 0.95)
+
+plot(cumsum(portf_return_naive), type='l', , col = "pink", xlab = 'day', ylab = 'return')
+
+lines(cumsum(portf_return_naive_no_crypto), type='l', col = "lightblue")
 grid()
+lines(cumsum(daily_portf_return), type='l', col = "red")
+
 lines(cumsum(portf_no_crypto_return), type = "l", col = "blue")
 
 plot(daily_portf_weights[['btc']], type="h", lwd=2, col = "red", xlab = 'day', ylab = 'btc weight', bg="lightblue")
